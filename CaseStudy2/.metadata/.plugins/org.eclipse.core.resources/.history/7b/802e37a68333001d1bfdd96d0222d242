@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: gate-way
+  
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+            - GET
+            - POST
+            - PUT
+            - DELETE      
+    
+      discovery:
+        locator:
+          enabled: true
+          
+          lower-case-service-id: true
+          
+      routes:
+      - id: customer-service
+        uri:
+          lb://customer-service
+        predicates:
+        - Path= /customer/** 
+        
+        
+      - id: company-service
+        uri:
+          lb://company-service
+        predicates:
+        - Path= /mapcontroller/**
+  

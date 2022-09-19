@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;Spring_Security_jwt&apos;&#x0D;&#x0A;- Original project: &apos;Spring_Security_jwt&apos;&#x0D;&#x0A;- Original element: &apos;Spring_Security_jwt/src/main/java/com.securityjwt.controller&apos;" description="Delete element" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.securityjwt.controller" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1661912795368" subPackages="false" version="1.0"/>
+</session>

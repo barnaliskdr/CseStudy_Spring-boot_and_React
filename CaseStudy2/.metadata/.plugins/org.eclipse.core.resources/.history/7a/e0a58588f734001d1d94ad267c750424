@@ -1,0 +1,77 @@
+package com.capg.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
+import com.capg.models.Company;
+import com.capg.models.User;
+import com.capg.repository.UserRepository;
+
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RestController
+@RequestMapping("/api/test")
+public class TestController {
+	
+	
+	@Bean
+	public RestTemplate getRestTemplate()
+	{
+		return new RestTemplate();
+	}
+	
+	@Autowired
+	public RestTemplate restTemplate;
+	
+	@Autowired
+	UserRepository userRepository;
+	
+	
+	/*public String allAccess() {
+		return "Public Content.";
+	}*/
+	/*@GetMapping("/all")
+	public	List<Company> servicegetAllcoupondetails()
+	{
+		ResponseEntity<List<Company>> companyResponse =  restTemplate.exchange("http://localhost:8086/mapcontroller/getAlldetails",HttpMethod.GET, null, new ParameterizedTypeReference<List<Company>>() {});
+		
+		List<Company> company = companyResponse.getBody();
+		return  company;
+	}*/
+	@GetMapping("/{company_name}")
+	public	List<Company> servicegetCouponByCompanyName(@PathVariable("company_name") String company_name)
+	{
+		
+		ResponseEntity<List<Company>> companyResponse =  restTemplate.exchange("http://localhost:8086/mapcontroller/getByCompanyName/"+company_name,HttpMethod.GET, null, new ParameterizedTypeReference<List<Company>>() {});	
+		
+		List<Company> company = companyResponse.getBody();
+		return  company;
+	}
+
+	@GetMapping("/user")
+	@PreAuthorize("hasRole('USER') or hasRole('COMPANY') or hasRole('ADMIN')")
+	public String userAccess() {
+		return "User Content.";
+	}
+	@GetMapping("/company")
+	@PreAuthorize("hasRole('Company')")
+	public String moderatorAccess() {
+		return "Moderator Board.";
+	}
+	@GetMapping("/admin")
+	@PreAuthorize("hasRole('ADMIN')")
+	public List<User> adminAccess() {
+		return userRepository.findAll();
+	}
+		
+}

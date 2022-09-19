@@ -1,0 +1,32 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          
+          lower-case-service-id: true
+          
+      routes:
+      - id: customer-service
+        uri:
+          lb://customer-service
+        predicates:
+        - Path= /customer/** 
+        
+        
+      - id: company-service
+        uri:
+          lb://company-service
+        predicates:
+        - Path= /mapcontroller/**
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedHeaders: "*"
+            allowedMethods:
+            - GET
+            - POST
+            - PUT
+            - DELETE

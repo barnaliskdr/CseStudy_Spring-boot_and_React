@@ -1,0 +1,5 @@
+package com.payment.demo.details;
+
+public class Payment {
+
+}

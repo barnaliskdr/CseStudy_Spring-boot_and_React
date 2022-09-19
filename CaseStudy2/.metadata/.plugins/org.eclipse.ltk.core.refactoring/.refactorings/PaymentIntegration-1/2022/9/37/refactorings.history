@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 2 elements to &apos;templates&apos;&#x0D;&#x0A;- Original project: &apos;PaymentIntegration-1&apos;&#x0D;&#x0A;- Destination element: &apos;templates&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     home.html&#x0D;&#x0A;     report.html" description="Copy files" element1="src/main/resources/templates/home.html" element2="src/main/resources/templates/report.html" files="2" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1662740943074" target="/PaymentGatewayImpl/src/main/resources/templates" units="0" version="1.0"/>
+</session>
